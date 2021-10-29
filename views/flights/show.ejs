@@ -32,6 +32,14 @@
       </tr>
     </tbody>
   </table>
+  <h2>Add Flight Ticket</h2>
+  <form action="/flights/<%= flight._id %>/tickets" method="post">
+    <label>Seat</label>
+    <input type="text" name="seat" id="seat-input" required pattern="[A-F][1-9]\d?"><br>
+    <label>Price</label>
+    <span>$</span><input type="number" name="price" id="price-input"><br>
+    <button type="submit">Add Ticket</button>
+  </form>
   <% if (flight.tickets.length) { %>
     <h2>Flight Tickets</h2>
     <table>

@@ -15,7 +15,18 @@ function show(req, res) {
     res.render('flights/show', {
       flight
     })
-    console.log(flight.departs.toLocaleDateString())
+  })
+}
+
+function newFlight(req, res) {
+  const newFlight = new Flight ()
+  const dt = newFlight.departs
+  const departsDate = dt.toISOString().slice(0, 16)
+  res.render('flights/new', {
+    departsDate,
+    airlines: flightModel.airlines,
+    airports: flightModel.airports,
+    defaultAirport: flightModel.defaultAirport
   })
 }
 
@@ -35,21 +46,21 @@ function create(req, res) {
   })
 }
 
-function newFlight(req, res) {
-  const newFlight = new Flight ()
-  const dt = newFlight.departs
-  const departsDate = dt.toISOString().slice(0, 16)
-  res.render('flights/new', {
-    departsDate,
-    airlines: flightModel.airlines,
-    airports: flightModel.airports,
-    defaultAirport: flightModel.defaultAirport
+function createTicket(req, res) {
+  Flight.findById(req.params.id, function(err, flight){
+    console.log(`Found flight:`, flight.flightNo)
+    flight.tickets.push(req.body)
+    flight.save(function(err) {
+      res.redirect(`/flights/${flight._id}`)
+    })
+    console.log(flight)
   })
 }
 
 export {
   index,
   show,
-  create,
   newFlight as new,
+  create,
+  createTicket
 }
