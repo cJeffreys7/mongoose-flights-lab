@@ -1,4 +1,5 @@
 import { Flight } from "../models/flight.js"
+import * as flightModel from "../models/flight.js"
 
 function index(req, res) {
   Flight.find({}, function(err, flights) {
@@ -10,6 +11,11 @@ function index(req, res) {
 }
 
 function create(req, res) {
+  for (let key in req.body) {
+    if (!req.body[key]) {
+      delete req.body[key]
+    }
+  }
   const flight = new Flight(req.body)
   console.log("New flight:", flight)
   flight.save(function(err) {
@@ -21,7 +27,15 @@ function create(req, res) {
 }
 
 function newFlight(req, res) {
-  res.render('flights/new')
+  const newFlight = new Flight ()
+  const dt = newFlight.departs
+  const departsDate = dt.toISOString().slice(0, 16)
+  res.render('flights/new', {
+    departsDate,
+    airlines: flightModel.airlines,
+    airports: flightModel.airports,
+    defaultAirport: flightModel.defaultAirport
+  })
 }
 
 export {
