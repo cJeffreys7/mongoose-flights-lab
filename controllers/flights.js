@@ -10,6 +10,15 @@ function index(req, res) {
   })
 }
 
+function show(req, res) {
+  Flight.findById(req.params.id, function(err, flight) {
+    res.render('flights/show', {
+      flight
+    })
+    console.log(flight.departs.toLocaleDateString())
+  })
+}
+
 function create(req, res) {
   for (let key in req.body) {
     if (!req.body[key]) {
@@ -40,6 +49,7 @@ function newFlight(req, res) {
 
 export {
   index,
+  show,
   create,
   newFlight as new,
 }

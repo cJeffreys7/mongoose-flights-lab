@@ -30,10 +30,12 @@
           <td><%= flight.airport %></td>
           <td><%= flight.flightNo %></td>
           <td><%= flight.departs %></td>
+          <td>
+            <a href="/flights/<%= flight._id %>">Flight Details</a>
+          </td>
         </tr>
       <% }) %>
     </tbody>
   </table>
-  <a href="/">Back to Home</a>
 </body>
 </html>

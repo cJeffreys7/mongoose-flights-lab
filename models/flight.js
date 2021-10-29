@@ -2,6 +2,14 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
+const ticketSchema = new Schema({
+  seat: String,
+  price: {
+    type: Number,
+    min: 0
+  }
+})
+
 const airlines = ['American', 'Southwest', 'United']
 const airports = ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
 const defaultAirport = airports[2]
@@ -24,7 +32,8 @@ const flightSchema = new Schema ({
   departs: {
     type: Date,
     default: nextYearDate()
-  }
+  },
+  tickets: [ticketSchema]
 })
 
 function nextYearDate() {
