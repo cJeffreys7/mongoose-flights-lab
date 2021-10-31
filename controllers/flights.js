@@ -10,14 +10,6 @@ function index(req, res) {
   })
 }
 
-function show(req, res) {
-  Flight.findById(req.params.id, function(err, flight) {
-    res.render('flights/show', {
-      flight
-    })
-  })
-}
-
 function newFlight(req, res) {
   const newFlight = new Flight ()
   const dt = newFlight.departs
@@ -27,6 +19,14 @@ function newFlight(req, res) {
     airlines: flightModel.airlines,
     airports: flightModel.airports,
     defaultAirport: flightModel.defaultAirport
+  })
+}
+
+function show(req, res) {
+  Flight.findById(req.params.id, function(err, flight) {
+    res.render('flights/show', {
+      flight
+    })
   })
 }
 
@@ -57,10 +57,17 @@ function createTicket(req, res) {
   })
 }
 
+function deleteFlight(req, res) {
+  Flight.findByIdAndDelete(req.params.id, function(err, flight){
+    res.redirect('/flights/index')
+  })
+}
+
 export {
   index,
   show,
   newFlight as new,
   create,
-  createTicket
+  createTicket,
+  deleteFlight as delete
 }
