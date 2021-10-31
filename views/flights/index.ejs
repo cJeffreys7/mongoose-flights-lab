@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Flights</title>
-  <link rel="stylesheet" href="/stylesheets/flights/index.css">
-</head>
-<body>
-  <nav>
-    <a href="/flights/index">All Flights</a>
-    <a href="/flights/new">Add Flight</a>
-  </nav>
+<%- include('../partials/html-head') -%>
+
+<link rel="stylesheet" href="/stylesheets/flights/index.css">
+
+<%- include('../partials/nav') -%>
+
   <h1>All Flights</h1>
   <table>
     <thead>
@@ -42,5 +34,5 @@
       <% }) %>
     </tbody>
   </table>
-</body>
-</html>
+
+<%- include('../partials/footer') -%>

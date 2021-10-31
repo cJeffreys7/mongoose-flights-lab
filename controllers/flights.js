@@ -5,7 +5,8 @@ function index(req, res) {
   Flight.find({}, function(err, flights) {
     res.render('flights/index', {
       flights: flights,
-      error: err
+      error: err,
+      title: 'All Flights'
     })
   })
 }
@@ -18,14 +19,16 @@ function newFlight(req, res) {
     departsDate,
     airlines: flightModel.airlines,
     airports: flightModel.airports,
-    defaultAirport: flightModel.defaultAirport
+    defaultAirport: flightModel.defaultAirport,
+    title: 'New Flight'
   })
 }
 
 function show(req, res) {
   Flight.findById(req.params.id, function(err, flight) {
     res.render('flights/show', {
-      flight
+      flight,
+      title: `${flight.airline} ${flight.flightNo}`
     })
   })
 }
