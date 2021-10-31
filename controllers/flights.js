@@ -48,12 +48,10 @@ function create(req, res) {
 
 function createTicket(req, res) {
   Flight.findById(req.params.id, function(err, flight){
-    console.log(`Found flight:`, flight.flightNo)
     flight.tickets.push(req.body)
     flight.save(function(err) {
       res.redirect(`/flights/${flight._id}`)
     })
-    console.log(flight)
   })
 }
 
@@ -63,11 +61,22 @@ function deleteFlight(req, res) {
   })
 }
 
+function deleteTicket(req, res) {
+  Flight.findById(req.params.id, function(err, flight) {
+    const ticketIdx = flight.tickets.findIndex(ticket => ticket._id === req.params.flightId)
+    flight.tickets.splice(ticketIdx, 1)
+    flight.save(function(err) {
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+}
+
 export {
   index,
   show,
   newFlight as new,
   create,
   createTicket,
-  deleteFlight as delete
+  deleteFlight as delete,
+  deleteTicket
 }
