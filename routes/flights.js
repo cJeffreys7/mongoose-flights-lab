@@ -25,6 +25,9 @@ router.post('/:id/destinations', flightsCtrl.addToDestinations)
 // localhost:3000/flights/:id/tickets/:id - DELETE
 router.delete('/:id/tickets/:ticketId', flightsCtrl.deleteTicket)
 
+// localhost:3000/flights/:id/destinations/:destinationId - DELETE
+router.delete('/:id/destinations/:destinationId', flightsCtrl.deleteDestination)
+
 // localhost:3000/flights/:id - DELETE
 router.delete('/:id', flightsCtrl.delete)
 

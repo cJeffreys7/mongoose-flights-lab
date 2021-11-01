@@ -73,12 +73,6 @@ function addToDestinations(req, res) {
   })
 }
 
-function deleteFlight(req, res) {
-  Flight.findByIdAndDelete(req.params.id, function(err, flight){
-    res.redirect('/flights/index')
-  })
-}
-
 function deleteTicket(req, res) {
   Flight.findById(req.params.id, function(err, flight) {
     const ticketIdx = flight.tickets.findIndex(ticket => ticket._id === req.params.flightId)
@@ -89,6 +83,22 @@ function deleteTicket(req, res) {
   })
 }
 
+function deleteDestination(req, res) {
+  Flight.findById(req.params.id, function(err, flight) {
+    const destinationIdx = flight.destinations.findIndex(d => d.toString().includes(req.params.destinationId))
+    flight.destinations.splice(destinationIdx, 1)
+    flight.save(function(err) {
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+}
+
+function deleteFlight(req, res) {
+  Flight.findByIdAndDelete(req.params.id, function(err, flight){
+    res.redirect('/flights/index')
+  })
+}
+
 export {
   index,
   show,
@@ -96,6 +106,7 @@ export {
   create,
   createTicket,
   addToDestinations,
-  deleteFlight as delete,
-  deleteTicket
+  deleteTicket,
+  deleteDestination,
+  deleteFlight as delete
 }

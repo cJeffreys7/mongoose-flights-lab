@@ -25,11 +25,19 @@
         <td><%= flight.departs.toLocaleTimeString().slice(0, -6) + flight.departs.toLocaleTimeString().slice(-3) %></td>
         <td>
           <ul>
-            <%- flight.destinations.map(d => `<li>${d.airport}</li>`).join('') %>
-            <!-- <form action="/flights/<%= flight._id %>?_method=DELETE" method="POST">
-              <button type="submit"  class="btn btn-primary">X</button>
-            </form> -->
+            <% flight.destinations.forEach(function(d) { %>
+              <li>
+                <%= d.airport %>
+              </li>
+            <% }) %>
           </ul>
+        </td>
+        <td>
+          <% flight.destinations.forEach(function(d) { %>
+            <form action="/flights/<%= flight._id %>/destinations/<%= d._id %>?_method=DELETE" method="POST">
+              <button type="submit"  class="btn btn-primary">X</button>
+            </form>
+          <% }) %>
         </td>
       </tr>
     </tbody>
