@@ -5,7 +5,7 @@
 <%- include('../partials/nav') -%>
 
   <h1>Add a Flight</h1>
-  <form class="input-form" action="/flights" method="post">
+  <form class="input-form" action="/flights" method="POST">
     <label>Airline</label>
     <select name="airline">
       <% airlines.forEach(function(airline) { %>
@@ -15,7 +15,7 @@
     <label>Airport</label>
     <select name="airport">
       <% airports.forEach(function(airport) { %>
-        <option value="<%= airport %>" <%= airport === defaultAirport ? "selected" : "" %> ><%= airport %></option>
+        <option value="<%= airport.airport %>"><%= airport.airport %></option>
       <% }) %>
     </select>
     <label>Flight Number</label>

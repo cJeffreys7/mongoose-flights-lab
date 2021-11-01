@@ -16,12 +16,13 @@ function newFlight(req, res) {
   const newFlight = new Flight ()
   const dt = newFlight.departs
   const departsDate = dt.toISOString().slice(0, 16)
-  res.render('flights/new', {
-    departsDate,
-    airlines: flightModel.airlines,
-    airports: flightModel.airports,
-    defaultAirport: flightModel.defaultAirport,
-    title: 'New Flight'
+  Destination.find({}, function(err, destinations) {
+    res.render('flights/new', {
+      departsDate,
+      airlines: flightModel.airlines,
+      airports: destinations,
+      title: 'New Flight'
+    })
   })
 }
 
@@ -49,6 +50,7 @@ function create(req, res) {
   console.log("New flight:", flight)
   flight.save(function(err) {
     if (err) {
+      console.log('Error:', err)
       return res.redirect('flights/new')
     }
     res.redirect('flights/index')

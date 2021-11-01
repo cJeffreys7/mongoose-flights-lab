@@ -11,8 +11,6 @@ const ticketSchema = new Schema({
 })
 
 const airlines = ['American', 'Southwest', 'United']
-const airports = ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
-const defaultAirport = airports[2]
 
 const flightSchema = new Schema ({
   airline: {
@@ -20,9 +18,7 @@ const flightSchema = new Schema ({
     enum: airlines
   },
   airport: {
-    type: String,
-    enum: airports,
-    default: defaultAirport
+    type: String
   },
   flightNo: {
     type: Number,
@@ -48,7 +44,5 @@ const Flight = mongoose.model('Flight', flightSchema)
 
 export {
   Flight,
-  airlines,
-  airports,
-  defaultAirport
+  airlines
 }
