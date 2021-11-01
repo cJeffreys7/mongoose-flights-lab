@@ -8,10 +8,13 @@
   <table>
     <thead>
       <tr>
-        <th>Airlines</th>
+        <th>Airline</th>
         <th>Airport</th>
         <th>Flight Number</th>
+        <th>Departure Date</th>
         <th>Departure Time</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -21,7 +24,8 @@
           <td><%= flight.airline %></td>
           <td><%= flight.airport %></td>
           <td><%= flight.flightNo %></td>
-          <td><%= flight.departs %></td>
+          <td><%= flight.departs.toLocaleDateString() %></td>
+          <td><%= flight.departs.toLocaleTimeString().slice(0, -6) + flight.departs.toLocaleTimeString().slice(-3) %></td>
           <td>
             <a href="/flights/<%= flight._id %>">Flight Details</a>
           </td>
