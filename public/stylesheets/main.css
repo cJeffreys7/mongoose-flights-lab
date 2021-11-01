@@ -24,7 +24,7 @@ html {
 
 body {
   margin: 0;
-  color: white;
+  color: black;
   min-height: 100vh;
   display: grid;
   grid-template-rows: 50px 1fr;
@@ -65,10 +65,15 @@ nav {
 }
 
 nav > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: var(--blue-shadow);
   color: white;
-  margin: 12px;
-  padding: 16px 12px 14px;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 100%;
+  text-align: center;
   text-decoration: none;
 }
 
@@ -77,9 +82,18 @@ main {
 }
 
 h1 {
+  color: white;
   position: absolute;
-  top: -24px;
+  top: 8px;
   left: 30%;
+}
+
+h2 {
+  background: var(--blue-shadow-op);
+  color: white;
+  margin-left: 24px;
+  padding: 12px;
+  width: fit-content;
 }
 
 img {
@@ -91,25 +105,48 @@ img {
 }
 
 table {
-  background: rgb(255, 255, 255, .5);
+  background: var(--blue-shadow-op);
   border-radius: 16px;
-  padding: 8px;
+  margin: 24px;
 }
 
 th {
-  background: var(--blue-shadow-op);
-  padding-left: 4px;
-  padding-right: 4px;
+  color: white;
+  padding-left: 8px;
+  padding-right: 8px;
   text-align: left;
 }
 
 td {
-  background: var(--bg-shadow);
-  padding-left: 4px;
-  padding-right: 4px;
+  background: rgb(255, 255, 255);  padding-left: 8px;
+  padding-right: 8px;
 }
 
-td > a {
+button > a {
   text-decoration: none;
   color: white;
+}
+
+button:hover > a {
+  text-decoration: none;
+  color: white;
+}
+
+.input-form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  background: white;
+  margin: 24px;
+  padding: 8px;
+  /* border-radius: 24px; */
+}
+
+.input-form > label, input, select, button {
+  margin-left: 12px;
+}
+
+.input-form > button {
+  margin-top: 12px;
 }

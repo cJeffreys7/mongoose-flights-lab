@@ -27,11 +27,11 @@
           <td><%= flight.departs.toLocaleDateString() %></td>
           <td><%= flight.departs.toLocaleTimeString().slice(0, -6) + flight.departs.toLocaleTimeString().slice(-3) %></td>
           <td>
-            <a href="/flights/<%= flight._id %>">Flight Details</a>
+            <button class="btn btn-primary"><a href="/flights/<%= flight._id %>">Flight Details</a></button>
           </td>
           <td>
             <form action="/flights/<%= flight._id %>?_method=DELETE" method="POST">
-              <button type="submit">X</button>
+              <button type="submit"  class="btn btn-primary">X</button>
             </form>
           </td>
         </tr>
