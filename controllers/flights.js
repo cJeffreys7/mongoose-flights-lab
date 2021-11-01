@@ -1,5 +1,6 @@
 import { Flight } from "../models/flight.js"
 import * as flightModel from "../models/flight.js"
+import { Destination } from "../models/destination.js"
 
 function index(req, res) {
   Flight.find({}, function(err, flights) {
@@ -25,10 +26,15 @@ function newFlight(req, res) {
 }
 
 function show(req, res) {
-  Flight.findById(req.params.id, function(err, flight) {
-    res.render('flights/show', {
-      flight,
-      title: `${flight.airline} ${flight.flightNo}`
+  Flight.findById(req.params.id)
+  .populate('destinations')
+  .exec(function(err, flight) {
+    Destination.find({_id: {$nin: flight.destinations}}, function(err, destinations) {
+      res.render('flights/show', {
+        flight,
+        title: `${flight.airline} ${flight.flightNo}`,
+        destinations: destinations
+      })
     })
   })
 }
@@ -58,6 +64,15 @@ function createTicket(req, res) {
   })
 }
 
+function addToDestinations(req, res) {
+  Flight.findById(req.params.id, function(err, flight) {
+    flight.destinations.push(req.body.destinationId)
+    flight.save(function(err){
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+}
+
 function deleteFlight(req, res) {
   Flight.findByIdAndDelete(req.params.id, function(err, flight){
     res.redirect('/flights/index')
@@ -80,6 +95,7 @@ export {
   newFlight as new,
   create,
   createTicket,
+  addToDestinations,
   deleteFlight as delete,
   deleteTicket
 }

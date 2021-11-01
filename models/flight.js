@@ -33,7 +33,8 @@ const flightSchema = new Schema ({
     type: Date,
     default: nextYearDate()
   },
-  tickets: [ticketSchema]
+  tickets: [ticketSchema],
+  destinations: [{type: Schema.Types.ObjectId, ref: 'Destination'}]
 })
 
 function nextYearDate() {

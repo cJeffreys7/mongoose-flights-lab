@@ -13,6 +13,7 @@
         <th>Flight Number</th>
         <th>Departure Date</th>
         <th>Departure Time</th>
+        <th><%= flight.destinations.length > 1 ? "Destinations" : "Destination" %></th>
       </tr>
     </thead>
     <tbody>
@@ -22,9 +23,23 @@
         <td><%= flight.flightNo %></td>
         <td><%= flight.departs.toLocaleDateString() %></td>
         <td><%= flight.departs.toLocaleTimeString().slice(0, -6) + flight.departs.toLocaleTimeString().slice(-3) %></td>
+        <td>
+          <ul>
+            <%- flight.destinations.map(d => `<li>${d.airport}</li>`).join('') %>
+            <!-- <form action="/flights/<%= flight._id %>?_method=DELETE" method="POST">
+              <button type="submit"  class="btn btn-primary">X</button>
+            </form> -->
+          </ul>
+        </td>
       </tr>
     </tbody>
   </table>
+  <form id="add-destination-to-flight" class="input-form" action="/flights/<%= flight._id %>/destinations" method="POST">
+    <select name="destinationId">
+      <%- destinations.map(d => `<option value="${d._id}">${d.airport}</option>`).join('') -%>
+    </select>
+    <button type="submit">Add Destination</button>
+  </form>
   <h2>Add Flight Ticket</h2>
   <form class="input-form" action="/flights/<%= flight._id %>/tickets" method="post">
     <label>Seat</label>

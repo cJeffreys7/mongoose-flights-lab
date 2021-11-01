@@ -1,0 +1,23 @@
+<%- include('../partials/html-head') -%>
+
+
+
+<%- include('../partials/nav') -%>
+
+<h1><%= title %></h1>
+<section>
+  Please make sure that the Destination is not already in the dropdown 
+  <br>
+  <select>
+    <% destinations.forEach(function(destination) { %>
+      <option><%= destination.airport %></option>
+    <% }) %>
+  </select>
+</section>
+<form id="add-destination-form" class="input-form" action="/destinations" method="POST">
+  <label for="airport-input">Airport</label>
+  <input type="text" name="airport" id="airport-input" required>
+  <button type="submit">Add Destination</button>
+</form>
+
+<%- include('../partials/footer') -%>
