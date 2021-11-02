@@ -5,24 +5,37 @@
 <%- include('../partials/nav') -%>
 
   <h1>Add a Flight</h1>
-  <form class="input-form" action="/flights" method="POST">
-    <label>Airline</label>
-    <select name="airline">
-      <% airlines.forEach(function(airline) { %>
-        <option value="<%= airline %>"><%= airline %></option>
-      <% }) %>
-    </select>
-    <label>Airport</label>
-    <select name="airport">
-      <% airports.forEach(function(airport) { %>
-        <option value="<%= airport.airport %>"><%= airport.airport %></option>
-      <% }) %>
-    </select>
-    <label>Flight Number</label>
-    <input type="number" name="flightNo" value="1000">
-    <label>Departure Time</label>
-    <input type="datetime-local" name="departs" value="<%= departsDate %>">
-    <button class="btn btn-primary" type="submit">Add Flight</button>
-  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Create New Flight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <form class="input-form" action="/flights" method="POST">
+            <label>Airline</label>
+            <select name="airline">
+              <% airlines.forEach(function(airline) { %>
+                <option value="<%= airline %>"><%= airline %></option>
+              <% }) %>
+            </select>
+            <label>Airport</label>
+            <select name="airport">
+              <% airports.forEach(function(airport) { %>
+                <option value="<%= airport.airport %>"><%= airport.airport %></option>
+              <% }) %>
+            </select>
+            <label>Flight Number</label>
+            <input type="number" name="flightNo" value="1000">
+            <label>Departure Time</label>
+            <input type="datetime-local" name="departs" value="<%= departsDate %>">
+            <button class="btn btn-primary btn-lg" type="submit">Add Flight</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 <%- include('../partials/footer') -%>

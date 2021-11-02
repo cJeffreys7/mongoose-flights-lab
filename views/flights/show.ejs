@@ -42,22 +42,49 @@
       </tr>
     </tbody>
   </table>
-  <form id="add-destination-to-flight" class="input-form" action="/flights/<%= flight._id %>/destinations" method="POST">
-    <select name="destinationId">
-      <%- destinations.map(d => `<option value="${d._id}">${d.airport}</option>`).join('') -%>
-    </select>
-    <button type="submit">Add Destination</button>
-  </form>
-  <h2>Add Flight Ticket</h2>
-  <form class="input-form" action="/flights/<%= flight._id %>/tickets" method="post">
-    <label>Seat</label>
-    <input type="text" name="seat" id="seat-input" required pattern="[A-F][1-9]\d?">
-    <label>Price</label>
-    <input type="number" name="price" id="price-input">
-    <button type="submit" class="btn btn-primary">Add Ticket</button>
-  </form>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Add New Destination</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <form id="add-destination-to-flight" class="input-form" action="/flights/<%= flight._id %>/destinations" method="POST">
+            <select name="destinationId">
+              <%- destinations.map(d => `<option value="${d._id}">${d.airport}</option>`).join('') -%>
+            </select>
+            <button class="btn btn-primary btn-lg" type="submit">Add Destination</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Add Flight Ticket</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <form class="input-form" action="/flights/<%= flight._id %>/tickets" method="post">
+            <label>Seat</label>
+            <input type="text" name="seat" id="seat-input" required pattern="[A-F][1-9]\d?">
+            <label>Price</label>
+            <input type="number" name="price" id="price-input">
+            <button type="submit" class="btn btn-primary btn-lg">Add Ticket</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
   <% if (flight.tickets.length) { %>
-    <h2>Flight Tickets</h2>
     <table>
       <thead>
         <tr>

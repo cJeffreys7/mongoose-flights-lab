@@ -2,7 +2,7 @@ html {
   box-sizing: border-box;
   max-width: 100%;
   overflow-x: hidden;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 
 /* The Universal Selector */
@@ -107,6 +107,7 @@ img {
 table {
   background: var(--blue-shadow-op);
   border-radius: 16px;
+  width: 95%;
   margin: 24px;
 }
 
@@ -114,12 +115,13 @@ th {
   color: white;
   padding-left: 8px;
   padding-right: 8px;
-  text-align: left;
+  text-align: center;
 }
 
 td {
   background: rgb(255, 255, 255);  padding-left: 8px;
   padding-right: 8px;
+  text-align: center;
 }
 
 button > a {
@@ -129,7 +131,7 @@ button > a {
 
 button:hover > a {
   text-decoration: none;
-  color: white;
+  color: var(--green-highlight);
 }
 
 .input-form {
@@ -142,10 +144,19 @@ button:hover > a {
   padding: 8px;
 }
 
-.input-form > label, input, select, button {
+.input-form > label, input, select, button, p {
   margin-left: 12px;
 }
 
 .input-form > button {
   margin-top: 12px;
+}
+
+input, select {
+  border: 2px solid lightgray;
+  color: gray;
+}
+
+label {
+  color: gray;
 }

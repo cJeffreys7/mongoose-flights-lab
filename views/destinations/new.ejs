@@ -5,19 +5,29 @@
 <%- include('../partials/nav') -%>
 
 <h1><%= title %></h1>
-<section>
-  Please make sure that the Destination is not already in the dropdown 
-  <br>
-  <select>
-    <% destinations.forEach(function(destination) { %>
-      <option><%= destination.airport %></option>
-    <% }) %>
-  </select>
-</section>
-<form id="add-destination-form" class="input-form" action="/destinations" method="POST">
-  <label for="airport-input">Airport</label>
-  <input type="text" name="airport" id="airport-input" required>
-  <button type="submit">Add Destination</button>
-</form>
+<table>
+  <thead>
+    <tr>
+      <th>Create New Destination</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <form id="add-destination-form" class="input-form" action="/destinations" method="POST">
+          <p>Please make sure that the Destination is not already in the dropdown</p>
+          <select>
+            <% destinations.forEach(function(destination) { %>
+              <option><%= destination.airport %></option>
+            <% }) %>
+          </select><br>
+          <label for="airport-input">Airport</label>
+          <input type="text" name="airport" id="airport-input" required>
+          <button class="btn btn-primary btn-lg" type="submit">Add Destination</button>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <%- include('../partials/footer') -%>
